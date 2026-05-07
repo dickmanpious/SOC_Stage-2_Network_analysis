@@ -1,5 +1,3 @@
----
-
 # Network Traffic Analysis – Stage 2
 
 ## HTTP – TCP GET  
