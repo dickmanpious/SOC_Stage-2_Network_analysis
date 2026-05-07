@@ -83,7 +83,3 @@ The analysis shows how TCP handshake sets up connection, DNS resolves domains, H
 ## Screenshots  
 
 ---
-
-This format uses **different words, smart analogies, and tables** so your README looks professional and easy to understand.  
-
-Do you want me to now extend this into **Stage 3 – Security Basics (malware, phishing, brute force, MITRE)** in the same smart table style so your repo feels complete?
