@@ -1,82 +1,89 @@
-# Network Traffic Analysis – Stage 2
+# Wireshark Network Traffic Analysis
 
-## HTTP – TCP GET  
-**Description:** HTTP is protocol for web communication. It runs on TCP and uses GET request to fetch data.  
-
-**Analysis:**  
-In Wireshark I saw TCP handshake first then HTTP GET request going to server. Data was in plain text.  
-
-| **Step** | **Observation** |
-|---------|----------------|
-| TCP Handshake | SYN → SYN‑ACK → ACK |
-| HTTP GET | Client asked for page |
-| Response | Server sent data in clear text |
+## Project Overview  
+This project demonstrates how to capture and analyze packets using Wireshark and explains what each protocol shows in real traffic.  
 
 ---
 
-## HTTPS – TLS Handshake  
-**Description:** HTTPS is secure version of HTTP. It uses TLS handshake where client sends Client Hello and server replies with Server Hello.  
+## Objectives  
+| **Objective** | **Meaning** |
+|----------------|----------------|
+| Capture Packets | Collect live traffic from network |
+| TCP Handshake | Study how client and server connect |
+| HTTPS Traffic | Observe TLS handshake and encryption |
+| DNS Queries | See how domains resolve to IP |
+| Stream Analysis | Follow TCP and TLS streams |
 
-**Analysis:**  
-In Wireshark I saw Client Hello and Server Hello packets. After that traffic was encrypted and not readable.  
+---
 
+## Tool Used  
+| **Tool** | **Purpose** |
+|-------------|----------------|
+| Wireshark | Packet capture and protocol analysis |
+
+---
+
+## Analysis Performed  
+
+### 1. TCP Analysis  
+**Smart Note:** TCP is like a polite handshake before talking. Client says hello (SYN), server replies (SYN‑ACK), and client confirms (ACK).  
 | **Step** | **Observation** |
 |---------|----------------|
-| Client Hello | Browser sent supported ciphers |
-| Server Hello | Server selected cipher and sent certificate |
+| SYN | Client starts connection |
+| SYN‑ACK | Server replies |
+| ACK | Client confirms |
+| Port | 443 used for HTTPS |
+
+---
+
+### 2. TLS Traffic  
+**Smart Note:** TLS is like locking the conversation with a secret key. Only client and server can read it.  
+| **Step** | **Observation** |
+|---------|----------------|
+| Client Hello | Browser sends supported ciphers |
+| Server Hello | Server chooses cipher and sends certificate |
 | Key Exchange | Secure session created |
-| Encrypted Data | Traffic unreadable in capture |
+| Encrypted Data | Content hidden from capture |
 
 ---
 
-## DNS  
-**Description:** DNS means Domain Name System. It changes domain name into IP address.  
-
-**Analysis:**  
-I checked DNS queries in Wireshark. Client asked for google.com and server replied with IP.  
-
+### 3. DNS Analysis  
+**Smart Note:** DNS is like a phonebook. You ask for a name and it gives you the number.  
 | **Step** | **Observation** |
 |---------|----------------|
-| Query | Client asked DNS server |
+| Query | Client asked for google.com |
 | Response | Server gave IP address |
 
 ---
 
-## Follow TCP Stream  
-**Description:** Wireshark can follow TCP stream to see communication between client and server.  
-
-**Analysis:**  
-I followed TCP stream and saw request and response. In HTTP it was readable but in HTTPS it was encrypted.  
-
+### 4. TCP Stream Analysis  
+**Smart Note:** Following TCP stream is like reading the full chat between client and server.  
 | **Stream** | **Observation** |
 |---------|----------------|
 | HTTP | Request and response visible |
-| HTTPS | Encrypted and not readable |
+| HTTPS | Encrypted and unreadable |
 
 ---
 
-## Follow TLS Stream  
-**Description:** TLS stream shows handshake messages like Client Hello and Server Hello.  
-
-**Analysis:**  
-I followed TLS stream and saw only handshake packets. Application data was encrypted and hidden.  
-
+### 5. TLS Stream Analysis  
+**Smart Note:** TLS stream shows the handshake but hides the actual talk.  
 | **Stream** | **Observation** |
 |---------|----------------|
 | Client Hello | Visible |
 | Server Hello | Visible |
-| Application Data | Encrypted and unreadable |
+| Application Data | Encrypted and hidden |
 
 ---
 
-## Final Comparison Table – Protocol Analysis
-
-| **Protocol** | **Description** | **Observation in Wireshark** |
-|--------------|----------------|------------------------------|
-| HTTP | Web protocol using TCP | GET request visible and data in plain text |
-| HTTPS | Secure HTTP with TLS | Client Hello and Server Hello visible and rest encrypted |
-| DNS | Resolves domain to IP | Query and response packets visible |
-| TCP Stream | Shows client server communication | HTTP readable and HTTPS encrypted |
-| TLS Stream | Shows TLS handshake | Only hello messages visible and data encrypted |
+## Conclusion  
+The analysis shows how TCP handshake sets up connection, DNS resolves domains, HTTP sends plain text, and HTTPS secures traffic with TLS. SOC analysts use Wireshark to monitor these flows and confirm if communication is safe.  
 
 ---
+
+## Screenshots  
+
+---
+
+This format uses **different words, smart analogies, and tables** so your README looks professional and easy to understand.  
+
+Do you want me to now extend this into **Stage 3 – Security Basics (malware, phishing, brute force, MITRE)** in the same smart table style so your repo feels complete?
